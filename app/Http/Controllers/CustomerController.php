@@ -12,4 +12,11 @@ class CustomerController extends Controller
         $customer = Customer::all();
         return view('customer',['customers' => $customer]);
     }
+    public function store(){
+        request()->validate([
+            'name' => 'required| min:3| unique:customers'
+        ]);
+        Customer::create(request()->all());
+        return back();
+    }
 }

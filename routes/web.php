@@ -15,3 +15,4 @@
 //     return view('welcome');
 // });
 Route::get('/', 'CustomerController@index');
+Route::post('customer', 'CustomerController@store');

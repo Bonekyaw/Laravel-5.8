@@ -12,17 +12,22 @@
         </head>
         <body>
             <div class="container">
-                <h1>Customer List</h1>
+                <div class="badge badge-secondary text-wrap" style="width: 30rem;height:4rem;"><h1>Customer List</h1></div>
                 <p>
-                    @foreach ($customers as $customer )
-                        <li>{{ $customer->name }}</li>
-                    @endforeach
+                    <ul class="list-group">
+                        @foreach ($customers as $customer )
+                            <li class="list-group-item">{{ $customer->name }}</li>
+                        @endforeach
+                    </ul>
                 </p>
-                <form>
+                <form action="customer" method="POST">
+                    @csrf
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Name</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      <label for="exampleInputEmail1">Create new name</label>
+                      <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="type here">
                     </div>
+                    <div>{{$errors->first('name')}}</div>
+
                     <button type="submit" class="btn btn-primary">Add New Name</button>
                   </form>
                   </div>
