@@ -9,19 +9,21 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customer = Customer::all();
-        return view('customer',['customers' => $customer]);
+        $activeCustomer = Customer::active()->get();
+        $inactiveCustomer = Customer::inactive()->get();
+        return view('customer', compact('activeCustomer','inactiveCustomer'));
     }
     public function store(){
-        request()->validate([
-            'name' => 'required| min:3| unique:customers',
-            'email' => 'required|email'
-        ]);
-        // Customer::create(request()->all());
-        $customer = new Customer;
-        $customer->name = request('name');
-        $customer->email = request('email');
-        $customer->save();
+        $data = request()->validate([
+                    'name' => 'required| min:3| unique:customers',
+                    'email' => 'required|email',
+                    'active' => 'required'
+                ]);
+        Customer::create($data);
+        // $customer = new Customer;
+        // $customer->name = request('name');
+        // $customer->email = request('email');
+        // $customer->save();
         return back();
     }
 }
