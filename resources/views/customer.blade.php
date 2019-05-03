@@ -12,6 +12,7 @@
         @if ($errors->first('name'))
         <div class="alert alert-danger">{{$errors->first('name')}}</div>
         @endif
+
         <div class="form-group">
             <label for="exampleInputEmail1">Email :</label>
         <input type="email" name="email" value="{{old('email')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="type here">
@@ -19,8 +20,9 @@
         @if ($errors->first('email'))
         <div class="alert alert-danger">{{$errors->first('email')}}</div>
         @endif
+
         <div class="form-group">
-            <label for="exampleInputEmail1">Status :</label>
+            <label for="active">Status :</label>
             <select class="custom-select" name="active" id="active">
                     <option selected disabled>Select status</option>
                     <option value="1">Active</option>
@@ -31,22 +33,56 @@
         <div class="alert alert-danger">{{$errors->first('active')}}</div>
         @endif
 
+        <div class="form-group">
+            <label for="company_id">Company :</label>
+            <select class="custom-select" name="company_id" id="company_id">
+                    <option selected disabled>Select Company</option>
+                    @foreach ($company as $com)
+                        <option value="{{$com->id}}">{{$com->name}}</option>
+                    @endforeach
+
+            </select>
+        </div>
+        @if ($errors->first('company_id'))
+        <div class="alert alert-danger">{{$errors->first('company_id')}}</div>
+        @endif
         <button type="submit" class="btn btn-primary">Add New Name</button>
       </form>
       <hr>
       <div class="row">
         <div class="col-6">
-            <h1>Active Customer</h1>
-                @foreach ($activeCustomer as $customer )
-                    <li>{{ $customer->name }} <span class="text-muted">({{ $customer->email}})</span></li>
-                @endforeach
+            <h3>Active Customer</h1>
+                <ul>
+                    @foreach ($activeCustomer as $customer )
+                        <li>{{ $customer->name }}
+                                <span class="text-muted">({{ $customer->company->name}})</span>
+                        </li>
+                    @endforeach
+                    </ul>
         </div>
         <div class="col-6">
-            <h1>Inactive Customer</h1>
-                @foreach ($inactiveCustomer as $incustomer )
-                    <li>{{ $incustomer->name }} <span class="text-muted">({{ $incustomer->email}})</span></li>
-                @endforeach
+            <h3>Inactive Customer</h1>
+                <ul>
+                    @foreach ($inactiveCustomer as $incustomer )
+                        <li>{{ $incustomer->name }}
+                                <span class="text-muted">({{ $incustomer->company->name}})</span>
+                        </li>
+                    @endforeach
+
+                </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+            @foreach ($company as $comp)
+
+                <h3>{{$comp->name}}</h1>
+                <ul>
+                    @foreach ($comp->customers as $customer)
+                        <li>{{$customer->name}}</li>
+                    @endforeach
+                </ul>
+            @endforeach
         </div>
       </div>
 @endsection
-
