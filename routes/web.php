@@ -11,11 +11,8 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', 'CustomerController@index');
-Route::post('customer', 'CustomerController@store');
+Route::resource('customers', 'CustomerController');
 Route::view('about', 'about');
 Route::view('contact', 'contact');
 // Auth::routes();
