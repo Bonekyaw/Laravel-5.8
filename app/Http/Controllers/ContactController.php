@@ -21,7 +21,8 @@ class ContactController extends Controller
         ]);
         Mail::to('test@gmail.com')->send(new ContactFormMail($data));
 
-        return redirect('contact');
+        return redirect('contact')->with('success','You have successfully sent your message ');
+        // session()->flash('success','You have successfully sent your message');
     }
     //Caution : You must restart server after changing env
 }
