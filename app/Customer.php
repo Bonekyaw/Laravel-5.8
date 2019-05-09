@@ -23,8 +23,9 @@ class Customer extends Model
 
     public function activeOption(){
         return [
+            1 => 'Active',
             0 => 'Inactive',
-            1 => 'Active'
+            2 => 'Inprogress'
         ];
     }
 

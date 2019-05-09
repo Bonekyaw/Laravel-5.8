@@ -13,8 +13,10 @@
 
 Route::get('/', 'CustomerController@index');
 Route::resource('customers', 'CustomerController');
+
 Route::view('about', 'about');
-Route::view('contact', 'contact');
+Route::get('contact', 'ContactController@create');
+Route::post('contact', 'ContactController@store');
 // Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
