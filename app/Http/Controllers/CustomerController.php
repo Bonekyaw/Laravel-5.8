@@ -28,14 +28,8 @@ class CustomerController extends Controller
 
     public function store()
     {
-        $data = request()->validate([
-                    'name' => 'required| min:3| unique:customers',
-                    'email' => 'required|email',
-                    'active' => 'required',
-                    'company_id' => 'required'
-                ]);
 
-        Customer::create($data);
+        Customer::create($this->setValidate());
         return redirect('customers');
         // $customer = new Customer;
         // $customer->name = request('name');
@@ -54,19 +48,23 @@ class CustomerController extends Controller
     }
     public function update(Customer $customer)
     {
-        $data = request()->validate([
-            'name' => 'required| min:3| unique:customers',
-            'email' => 'required|email',
-            'active' => 'required',
-            'company_id' => 'required'
-        ]);
 
-        $customer->update($data);
+        $customer->update($this->setValidate());
         return redirect('customers');
     }
     public function destroy(Customer $customer)
     {
         $customer->delete();
         return redirect('customers');
+    }
+    public function setValidate()
+    {
+        return request()->validate([
+            'name' => 'required| min:3| unique:customers',
+            'email' => 'required|email',
+            'active' => 'required',
+            'company_id' => 'required'
+        ]);
+
     }
 }

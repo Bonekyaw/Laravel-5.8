@@ -18,8 +18,9 @@
         <label for="active">Status :</label>
         <select class="custom-select" name="active" id="active">
                 <option selected disabled>Select status</option>
-                <option value="1" {{ $customer->active == 1 ? 'selected': '' }}>Active</option>
-                <option value="0" {{ $customer->active == 0 ? 'selected': '' }}>Inactive</option>
+                @foreach ($customer->activeOption() as $activeKey => $activeValue)
+                    <option value="{{$activeKey}}" {{ $customer->active == $activeValue ? 'selected': '' }}>{{$activeValue}}</option>
+                @endforeach
         </select>
     </div>
     @if ($errors->first('active'))

@@ -26,7 +26,7 @@
             <strong>Company :</strong>{{$customer->company->name}}
         </div>
         <div class="col-12">
-            <strong>Status :</strong>{{$customer->active ? 'Active' : 'Inactive' }}
+            <strong>Status :</strong>{{$customer->active }}
         </div>
     </div>
  </div>
