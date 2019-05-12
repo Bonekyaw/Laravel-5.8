@@ -1,7 +1,6 @@
 
- @extends('layout')
+ @extends('layouts.app')
  @section('content')
- <div class="container">
     <div class="badge badge-secondary text-wrap" style="width: 100%;height:4rem;"><h1>Customer List</h1></div>
     <p class="my-2"><a href="/customers/create">Add New Customer</a></p>
     <div class="row">
@@ -40,5 +39,4 @@
             </div>
         @endforeach
     </div>
- </div>
 @endsection

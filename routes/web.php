@@ -11,12 +11,15 @@
 |
 */
 
-Route::get('/', 'CustomerController@index');
+Route::get('/', function(){
+    return view('welcome');
+});
 Route::resource('customers', 'CustomerController');
+// Route::resource('customers', 'CustomerController')->middleware('auth');
 
 Route::view('about', 'about');
 Route::get('contact', 'ContactController@create');
 Route::post('contact', 'ContactController@store');
-// Auth::routes();
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

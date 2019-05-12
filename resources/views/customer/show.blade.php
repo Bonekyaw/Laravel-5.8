@@ -1,7 +1,6 @@
 
- @extends('layout')
+ @extends('layouts.app')
  @section('content')
- <div class="container">
     <div class="badge badge-secondary text-wrap" style="width: 100%;height:4rem;"><h1>{{'Detail from'. '' .$customer->name}}</h1></div>
     <div class="d-flex my-2">
                 <a href="/customers/{{$customer->id}}/edit">
@@ -29,5 +28,4 @@
             <strong>Status :</strong>{{$customer->active }}
         </div>
     </div>
- </div>
 @endsection

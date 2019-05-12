@@ -1,7 +1,6 @@
 
- @extends('layout')
+ @extends('layouts.app')
  @section('content')
- <div class="container">
     <div class="badge badge-secondary text-wrap" style="width: 100%;height:4rem;"><h1>Modify Customer</h1></div>
     <form action="/customers/{{$customer->id}}" method="POST">
         @method('PATCH')
@@ -10,5 +9,4 @@
         @csrf
     </form>
 
- </div>
 @endsection

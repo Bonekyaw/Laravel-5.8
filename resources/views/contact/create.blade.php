@@ -1,6 +1,5 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
-<div class="container">
         <h1>Contact</h1>
         @if (session()->has('success'))
             <div class="alert alert-success">{{session()->get('success')}}</div>
@@ -37,5 +36,4 @@
 
                 </form>
             @endif
-</div>
 @endsection
