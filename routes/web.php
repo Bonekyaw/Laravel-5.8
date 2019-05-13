@@ -17,7 +17,7 @@ Route::get('/', function(){
 Route::resource('customers', 'CustomerController');
 // Route::resource('customers', 'CustomerController')->middleware('auth');
 
-Route::view('about', 'about')->middleware('test');
+Route::view('about', 'about');
 Route::get('contact', 'ContactController@create');
 Route::post('contact', 'ContactController@store');
 Auth::routes();

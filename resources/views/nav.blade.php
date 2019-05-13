@@ -17,11 +17,14 @@
                                 <a class="nav-link" href="/customers">Customer</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="/about">About</a>
+                                <a class="nav-link" href="{{url('/about')}}">About</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link " href="/contact" >Contact</a>
-                        </li>
+                                    <a class="nav-link " href="/contact" >Contact</a>
+
+                                {{-- <a class="nav-link " href="{{action('ContactController@create')}}" >Contact</a> --}}
+                                {{-- <a class="nav-link " href="{{action([App\Http\Controllers\ContactController::class,'create'])}}" >Contact</a> --}}
+                            </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

@@ -6,7 +6,8 @@
         @endif
 
         @if (! session()->has('success'))
-        <form action="contact" method="POST">
+        <form action="/contact" method="POST">
+            {{-- <form action="{{route('contact')}}" method="POST"> --}}
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Name :</label>
