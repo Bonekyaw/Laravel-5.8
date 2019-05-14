@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in!
+                    <vue-test type='submit' text='Bone'></vue-test>
                 </div>
             </div>
         </div>
