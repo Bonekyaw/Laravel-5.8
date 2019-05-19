@@ -12,7 +12,8 @@ class AddCompanyCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'add:company {name} {phone?}';
+    // protected $signature = 'add:company {name} {phone?}';
+    protected $signature = 'add:company';
 
     /**
      * The console command description.
@@ -38,11 +39,24 @@ class AddCompanyCommand extends Command
      */
     public function handle()
     {
-        $company = Company::create([
-            'name' => $this->argument('name'),
-            'phone' => $this->argument('phone') ?? 'N/A',
+        $name = $this->ask('Add a company name');
+        $phone = $this->ask('Add company phone number');
 
-            ]);
-            $this->info('Now added : '. $company->name);
+        if ($this->confirm('Are you sure to add '. $name)) {
+            $company = Company::create([
+                'name' => $name,
+                'phone' => $phone,
+
+                ]);
+            return  $this->info('Now added : '. $company->name);
+        }
+        return $this->warn('No company is added');
+
+        // $company = Company::create([
+        //     'name' => $this->argument('name'),
+        //     'phone' => $this->argument('phone') ?? 'N/A',
+
+        //     ]);
+        //     $this->info('Now added : '. $company->name);
     }
 }
