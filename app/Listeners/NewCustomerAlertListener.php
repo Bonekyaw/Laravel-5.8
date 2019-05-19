@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Listeners;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewCustomerAlertListener
+class NewCustomerAlertListener implements ShouldQueue
 {
 
     /**
