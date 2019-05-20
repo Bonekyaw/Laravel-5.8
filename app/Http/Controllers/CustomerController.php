@@ -74,7 +74,7 @@ class CustomerController extends Controller
     public function setValidate()
     {
         return request()->validate([
-            'name' => 'required| min:3| unique:customers',
+            'name' => 'required| min:3',
             'email' => 'required|email',
             'active' => 'required',
             'company_id' => 'required'
