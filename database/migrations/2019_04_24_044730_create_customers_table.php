@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('email')->unique();
             $table->integer('active');
             $table->unsignedInteger('company_id');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

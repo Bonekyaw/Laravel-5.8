@@ -40,7 +40,10 @@ class CustomerController extends Controller
     {
 
         $customer = Customer::create($this->setValidate());
+        $this->storeToUploads($customer);
+
         event(new NewCustomerEvent($customer));
+
         // Mail::to($customer->email)->send(new NewCustomerWelcome());
         // return redirect('customers');
 
@@ -64,6 +67,7 @@ class CustomerController extends Controller
     {
 
         $customer->update($this->setValidate());
+        $this->storeToUploads($customer);
         return redirect('customers');
     }
     public function destroy(Customer $customer)
@@ -77,8 +81,17 @@ class CustomerController extends Controller
             'name' => 'required| min:3',
             'email' => 'required|email',
             'active' => 'required',
-            'company_id' => 'required'
+            'company_id' => 'required',
+            'image' => 'sometimes|file|image|max:5000'
         ]);
 
+    }
+    public function storeToUploads($customer)
+    {
+        if (request()->has('image')) {
+            $customer->update([
+                'image' => request()->image->store('uploads','public')
+            ]);
+        }
     }
 }

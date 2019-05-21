@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    protected $fillable = ['name','email','active','company_id'];
+    protected $guarded = [];
 
     // To create default attribute which error becomes when new customer object is called
     // If active of new object is null, this attribe is set as default active value

@@ -40,3 +40,11 @@
     @if ($errors->first('company_id'))
     <div class="alert alert-danger">{{$errors->first('company_id')}}</div>
     @endif
+
+    <div class="form-group d-flex flex-column" >
+        <label for="image">Upload your profile :</label>
+        <input type="file" name="image" id="image" class="py-2">
+    </div>
+    @if ($errors->first('image'))
+    <div class="alert alert-danger">{{$errors->first('image')}}</div>
+    @endif
