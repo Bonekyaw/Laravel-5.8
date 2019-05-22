@@ -39,4 +39,9 @@
             </div>
         @endforeach
     </div>
+    <div class="row pt-3">
+        <div class="col-2">
+            {{$customers->links()}}
+        </div>
+    </div>
 @endsection

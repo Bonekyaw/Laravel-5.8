@@ -21,7 +21,7 @@ class CustomerController extends Controller
     }
     public function index()
     {
-        $customers = Customer::with('company')->get();      //This is called Eager Loading
+        $customers = Customer::with('company')->paginate(15);      //This is called Eager Loading
         return view('customer.index', compact('customers'));
     }
     /**
