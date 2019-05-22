@@ -21,7 +21,7 @@ class CustomerController extends Controller
     }
     public function index()
     {
-        $customers = Customer::all();
+        $customers = Customer::with('company')->get();      //This is called Eager Loading
         return view('customer.index', compact('customers'));
     }
     /**
@@ -46,7 +46,7 @@ class CustomerController extends Controller
         event(new NewCustomerEvent($customer));
 
         // Mail::to($customer->email)->send(new NewCustomerWelcome());
-        // return redirect('customers');
+        return redirect('customers');
 
 
         // $customer = new Customer;

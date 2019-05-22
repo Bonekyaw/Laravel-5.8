@@ -16,7 +16,7 @@ class NewCustomerWelcomeMailListener
      */
     public function handle( $event)
     {
-        sleep(10);
+        // sleep(10);
 
         Mail::to($event->customer->email)->send(new NewCustomerWelcome());
     }
