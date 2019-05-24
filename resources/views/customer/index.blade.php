@@ -2,17 +2,25 @@
  @extends('layouts.app')
  @section('content')
     <div class="badge badge-secondary text-wrap" style="width: 100%;height:4rem;"><h1>Customer List</h1></div>
-    <p class="my-2"><a href="/customers/create">Add New Customer</a></p>
-    <div class="row">
+    @can('create', \App\Customer::class)
+        <p class="my-2">
+            <a href="/customers/create">Add New Customer</a>
+        </p>
+    @endcan
+    <div class="row pt-2">
         @foreach ($customers as $customer)
             <div class="col-1">
                 {{$customer->id}}
             </div>
             <div class="col-3">
-                <a href="/customers/{{$customer->id}}">
+                @can('view', $customer)
+                    <a href="/customers/{{$customer->id}}">
+                        {{ $customer->name}}
+                    </a>
+                @endcan
+                @cannot('view', $customer)
                     {{ $customer->name}}
-
-                </a>
+                @endcannot
             </div>
             <div class="col-3">
                 {{ $customer->email}}

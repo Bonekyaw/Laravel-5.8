@@ -21,7 +21,9 @@ class CustomerController extends Controller
     }
     public function index()
     {
-        $customers = Customer::with('company')->paginate(15);      //This is called Eager Loading
+        $customers = Customer::with('company')
+                        ->orderBy('id', 'DESC')
+                        ->paginate(15);      //This is called Eager Loading
         return view('customer.index', compact('customers'));
     }
     /**
@@ -39,7 +41,7 @@ class CustomerController extends Controller
 
     public function store()
     {
-
+        $this->authorize('create',Customer::class);
         $customer = Customer::create($this->setValidate());
         $this->storeToUploads($customer);
 
@@ -57,6 +59,7 @@ class CustomerController extends Controller
     }
     public function show(Customer $customer)
     {
+        $this->authorize('view', $customer);
         return view('customer.show',compact('customer'));
     }
     public function edit(Customer $customer)
