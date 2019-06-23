@@ -41,8 +41,9 @@ class CustomerController extends Controller
 
     public function store()
     {
+        $id = request()->id;
         $this->authorize('create',Customer::class);
-        $customer = Customer::create($this->setValidate());
+        $customer = Customer::create($this->setValidate($id));
         $this->storeToUploads($customer);
 
         event(new NewCustomerEvent($customer));
@@ -69,8 +70,8 @@ class CustomerController extends Controller
     }
     public function update(Customer $customer)
     {
-
-        $customer->update($this->setValidate());
+        $id = $customer->id;
+        $customer->update($this->setValidate($id));
         $this->storeToUploads($customer);
         return redirect('customers');
     }
@@ -79,11 +80,11 @@ class CustomerController extends Controller
         $customer->delete();
         return redirect('customers');
     }
-    public function setValidate()
+    public function setValidate($id)
     {
         return request()->validate([
             'name' => 'required| min:3',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:customers,email,'.$id,
             'active' => 'required',
             'company_id' => 'required',
             'image' => 'sometimes|file|image|max:5000'
