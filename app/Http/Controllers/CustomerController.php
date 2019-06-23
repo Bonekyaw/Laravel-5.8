@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewCustomerWelcome;
 use Intervention\Image\Facades\Image;
+use Storage;
 
 
 class CustomerController extends Controller
@@ -71,12 +72,17 @@ class CustomerController extends Controller
     public function update(Customer $customer)
     {
         $id = $customer->id;
+        if (request()->has('image')) {
+            Storage::delete('public/'.$customer->image);
+        } 
+        
         $customer->update($this->setValidate($id));
         $this->storeToUploads($customer);
         return redirect('customers');
     }
     public function destroy(Customer $customer)
     {
+        Storage::delete('public/'.$customer->image);
         $customer->delete();
         return redirect('customers');
     }
